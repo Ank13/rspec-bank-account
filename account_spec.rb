@@ -8,9 +8,6 @@ describe Account do
 
   describe "#initialize" do
     context 'with valid input' do
-      it 'requires at least one argument' do
-        expect { Account.new }.to raise_error(ArgumentError)
-      end
 
       it 'creates an Account with the account number' do
         account.acct_number.should eq("******6789")
@@ -20,11 +17,23 @@ describe Account do
         account.should be_an_instance_of Account
       end
 
+      it 'account balance should be zero as default' do
+        account.balance.should eq(0)
+      end
+
     end
 
+    context 'with invalid input' do
+      it 'account should be 10 numbers' do
+        expect { Account.new("345678") }.to raise_error(InvalidAccountNumberError)
+      end
 
-
+      it 'requires at least one argument' do
+        expect { Account.new }.to raise_error(ArgumentError)
+      end
+    end
   end
+
 
   describe "#transactions" do
 
