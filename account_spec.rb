@@ -3,8 +3,8 @@ require "rspec"
 require_relative "account"
 
 describe Account do
-  let(:acct_number) {3123456789}
-  let(:account) { Account.new(acct_number) }
+  let(:checking_number) {"3123456789"}
+  let(:account) { Account.new(checking_number) }
 
   describe "#initialize" do
     context 'with valid input' do
@@ -14,6 +14,10 @@ describe Account do
 
       it 'creates an Account with the account number' do
         account.acct_number.should eq("******6789")
+      end
+
+      it 'account is instance of Account' do
+        account.should be_an_instance_of Account
       end
 
     end
